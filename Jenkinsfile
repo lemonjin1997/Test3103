@@ -33,7 +33,7 @@ pipeline {
 		}
 		stage('TestUI') {
 			steps {
-                	sh 'docker-compose exec -T test_team_1 sh -c "python3 -m pytest src/testUI.py'
+                	sh 'docker-compose exec -T test_team_1 sh -c "python3 -m unittest src/testUI.py'
             		}
 		}
 		
