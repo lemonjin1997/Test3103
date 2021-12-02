@@ -9,8 +9,10 @@ pipeline {
 		} 
 		stage('Build') {
 			steps {
+				
 				sh 'ls'
 				sh 'ls src'
+				sh 'pip install -r src/requirements.txt'
 				sh 'python3 src/app.py'
 				//sh 'docker compose up'
 			}
