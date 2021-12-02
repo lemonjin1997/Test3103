@@ -9,7 +9,7 @@ pipeline {
 		} 
 		stage('Build') {
 			steps {
-				sh 'python3 -m /home/student95/src/app'
+				sh 'python3 -m src/app'
 				//sh 'docker compose up'
 			}
 		}
