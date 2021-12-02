@@ -9,17 +9,18 @@ pipeline {
 		} 
 		stage('Build') {
 			steps {
-				sh 'docker compose up'
+				sh 'python3 -m app.py'
+				//sh 'docker compose up'
 			}
 		}
 		stage('Test') {
 			steps {
-               		 sh 'docker exec -it test3103-team-1 python3 -m pytest src/test.py'
+               		 sh 'python3 -m pytest src/test.py'
             		}
 		}
 		stage('TestUI') {
 			steps {
-                	sh 'docker exec -it test3103-team-1 python3 -m pytest src/testUI.py'
+                	sh 'test3103-team-1 python3 -m pytest src/testUI.py'
             		}
 		}
 		stage('Code Quality Check via SonarQube') { 
