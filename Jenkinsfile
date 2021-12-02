@@ -12,7 +12,7 @@ pipeline {
 				
 				sh 'ls'
 				sh 'ls src'
-				sh 'pip install -r src/requirements.txt'
+				sh 'python3 -m pip install -r src/requirements.txt'
 				sh 'python3 src/app.py'
 				//sh 'docker compose up'
 			}
