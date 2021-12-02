@@ -17,12 +17,12 @@ pipeline {
 		}
 		stage('Test') {
 			steps {
-               		 sh 'python3 -m pytest src/test.py'
+               		 sh 'docker exec -it test3103-team-1 python3 -m pytest src/test.py'
             		}
 		}
 		stage('TestUI') {
 			steps {
-                	sh 'test3103-team-1 python3 -m pytest src/testUI.py'
+                	sh 'docker exec -it test3103-team-1 python3 -m pytest src/testUI.py'
             		}
 		}
 		stage('Code Quality Check via SonarQube') { 
