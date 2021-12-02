@@ -2,6 +2,11 @@ pipeline {
 	agent any
 		
 	stages {
+		stage ('Checkout') { 
+            steps { 
+                git branch:'main', url: 'https://github.com/lemonjin1997/Test3103.git' 
+		    } 
+		} 
 		stage('Build') {
 			steps {
 				sh 'docker compose up'
