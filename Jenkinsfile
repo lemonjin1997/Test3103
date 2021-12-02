@@ -17,6 +17,7 @@ pipeline {
 		}
 		stage('Test') {
 			steps {
+				sh 'docker ps'
                		 sh 'docker exec -it test_team_1 python3 -m pytest src/test.py'
             		}
 		}
