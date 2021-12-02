@@ -12,6 +12,11 @@ pipeline {
                 sh 'docker exec -it test3103-team-1 python3 -m pytest src/test.py'
             }
 		}
+		stage('TestUI') {
+			steps {
+                sh 'docker exec -it test3103-team-1 python3 -m pytest src/testUI.py'
+            }
+		}
 	}
 	post{
 		always{
