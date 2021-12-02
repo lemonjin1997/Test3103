@@ -50,14 +50,14 @@ class SeleniumTest(unittest.TestCase):
         self.delay_time = 5
         try:
             self.driver = webdriver.Remote(
-                command_executor="http://selenium-hub:4444/wd/hub",
+                command_executor="http://team_selenium-hub_1:4444/wd/hub",
                 options=chrome_options
             )
             print('get seleniumhub')
             self.driver.set_page_load_timeout(ACCEPTABLE_PAGE_LOADING_TIME_SECONDS)
-            self.driver.get(f"http://team3103-team:5000/search")
+            self.driver.get(f"http://test_team_1:5000/search")
             self.driver.implicitly_wait('1')
-            self.driver.get(f"http://team3103-team:5000/search")
+            self.driver.get(f"http://test_team_1:5000/search")
             print('get my site')
         except WebDriverException as e:
             self.driver.browser.quit()
