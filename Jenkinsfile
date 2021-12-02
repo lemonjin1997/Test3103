@@ -9,7 +9,7 @@ pipeline {
 		} 
 		stage('Build') {
 			steps {
-				sh 'python3 -m app.py'
+				sh 'python3 -m src/app.py'
 				//sh 'docker compose up'
 			}
 		}
