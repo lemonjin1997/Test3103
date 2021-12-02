@@ -14,8 +14,8 @@ pipeline {
 				sh 'ls src'
 				//sh 'apt install python3-pip'
 				//sh 'Y'
-				sh 'python -m pip install -r src/requirements.txt'
-				sh 'python src/app.py'
+				sh 'python3 -m pip install -r src/requirements.txt'
+				sh 'python3 src/app.py'
 				//sh 'docker compose up'
 			}
 		}
