@@ -9,7 +9,7 @@ pipeline {
 		}
 		stage('Test') {
 			steps {
-                sh ''
+                sh 'docker exec -it test3103-team-1 python3 -m pytest src/test.py'
             }
 		}
 	}
