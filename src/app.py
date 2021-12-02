@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, session
 from flask import render_template
 from flask import request
 from flask import redirect, url_for
@@ -13,48 +13,31 @@ dic = {}
 def hello_world():
     return str(dic)
 
-@app.route("/login")
-def login():
-    return render_template('login.html')
-
-@app.route("/loginPost",  methods=['POST'])
-def logining():
-    Username = request.form.get('Username')
-    Password = request.form.get('Password')
-    if dic.get(Username) is not None:
-        if dic[Username] == Password:
-            print('login sucess')
-    return redirect(url_for('login'))
-
-@app.route("/register")
-def register():
-    return render_template('register.html')
-
-@app.route("/registerPost",  methods=['POST'])
-def registering():
-    Username = request.form.get('Username')
-    Password = request.form.get('Password')
-    dic[Username] = Password
-    print(Username, Password)
-    return redirect(url_for('login'))
-
-@app.route('/search')
+@app.route('/search', methods=['GET'])
 def search():
-    return render_template('dashboard.html')
+    return render_template('search.html')
 
 @app.route('/searchPost',  methods=['POST'])
 def searchPost():
     Search = request.form.get('Search')
-    if check_content():
-        pass
-
+    
+    if check_content(Search) == False:
+        return redirect(url_for('search'))
+    else:
+        session['id'] = Search
+        return redirect(url_for('searchSuccess'))
+        
+@app.route('/searchSuccess', methods=['GET'])
+def searchSuccess():
+    successMessage=session['id']
+    return render_template('Success.html', successMessage=successMessage)
 
 # Check input content
 def check_content(data):
     regex = r'''^[A-Za-z0-9,.!#$%&+\/=?^_`{|}~()"\- ]+$'''
     regex2 = r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))'''
 
-    temp_data = str(self.data).strip()
+    temp_data = str(data).strip()
 
     ptn = re.compile(regex)
     ptn2 = re.compile(regex2)
@@ -72,7 +55,8 @@ def check_content(data):
         return False
 
     else:
-        return temp_data
+        return True
 
 if __name__== "__main__": 
+    app.config['SECRET_KEY'] = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
     app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)
